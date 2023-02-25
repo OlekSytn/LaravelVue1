@@ -1,0 +1,207 @@
+name: Category
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/categories
+    metadata:
+      title: 'Category List'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer token'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 200,
+                "message": "Category fetch successfully.",
+                "data": [
+                    {
+                       "id": 2,
+                        "name": "Iphone 14",
+                        "created_at": "22nd September, 2022"
+                    }
+                ]
+            }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/categories
+    metadata:
+      title: 'Add Category'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer token'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: required.
+        required: false
+        example: iphone
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 201,
+                "message": "Category created successfully."
+            }
+        headers: []
+        description: '200'
+    responseFields:
+      success:
+        name: success
+        description: 'The success of this API response is (`true` or `false`).'
+        type: boolean
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/categories/{id}'
+    metadata:
+      title: 'Show Single Category'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer token'
+    urlParameters:
+      id:
+        name: id
+        description: 'This id require for fetching category details.'
+        required: true
+        example: '1'
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 201,
+                "message": "Category fetch successfully.",
+                "data": {
+                    "id": 1,
+                    "name": "Iphone 14",
+                    "created_at": "22nd September, 2022"
+                }
+            }
+        headers: []
+        description: '200'
+    responseFields:
+      success:
+        name: success
+        description: 'The success of this API response is (`true` or `false`).'
+        type: boolean
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/categories/{id}'
+    metadata:
+      title: 'Update Category'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer token'
+    urlParameters:
+      id:
+        name: id
+        description: 'This id require for updating category details.'
+        required: true
+        example: '1'
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: required.
+        required: false
+        example: iphone
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 201,
+                "message": "Category updated successfully."
+            }
+        headers: []
+        description: '200'
+    responseFields:
+      success:
+        name: success
+        description: 'The success of this API response is (`true` or `false`).'
+        type: boolean
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/categories/{id}'
+    metadata:
+      title: 'Delete Category'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer token'
+    urlParameters:
+      id:
+        name: id
+        description: 'This id require for fetching category details.'
+        required: true
+        example: '1'
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 200,
+                "message": "Category deleted successfully."
+            }
+        headers: []
+        description: '200'
+    responseFields:
+      success:
+        name: success
+        description: 'The success of this API response is (`true` or `false`).'
+        type: boolean

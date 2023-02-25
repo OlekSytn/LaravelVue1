@@ -1,0 +1,848 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost\/Learning\/appnap-assignment\/backend\/api\/v1"
+        }
+    ],
+    "info": {
+        "name": "Appnap Assignment API Documentation",
+        "_postman_id": "708551b5-9f7c-42a8-addf-81f74ee4e8ed",
+        "description": "Md.Rabiul Hasan appnap assignment api documentation.",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authentication",
+            "description": "",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"mdrabiulhasan.me@gmail.com\",\"password\":\"123456\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 200,\n      \"message\": \"User login successfully.\",\n      \"data\": {\n          \"name\": \"Rabiul Hasan\",\n          \"token_type\": \"Bearer\",\n          \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZDkxMWQ2ZWU3ODliZGE5NzZlNmYyYjdhOGVjNGJkYzBhMjUxMzRjNTExMTQ3OGM0NzQwZWVlY2ZiMDNjMDExNThhMDQ0MjYzZWYwNDcxNmMiLCJpYXQiOjE2NjM5OTcwMjYuMDY1MzczLCJuYmYiOjE2NjM5OTcwMjYuMDY1Mzc5LCJleHAiOjE2OTU1MzMwMjUuODk3MzQ5LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mdGij29naRU4_0munG-pkV2qqGdilPcqjz9lnTdl_L5FW5b-eaX8gwm9EDWxUlAM8wLq1BnvYM3ahOyO61he_ZA_S8aeeGeRMg4ymc8ZYGxjj1XT_d7YhEIx1sOBj9g7dVlXrk76b5DCejATxk8MPahQduxg51oRwTDum-9MMuAoazf6g6kEAc7IemELQPPI7MsoySCYYjQef2ZDV3UKsmTKXYsw81YPse6TWEvrEaRUOE5DzjwLEPj806vYcgIbq5ExMGRYH49uV09N6kTlxMW8zuAqL23VJTyl1SI_9JhlFQdy__ufC7zAZh5S-PKvByrlIltfCgdsE17a90YZBzmp0uj9GgQTH5inNx9ekpRpMcVb6ZvXjlPccj8TGCTsNy7MajPP9DedFG-hECFE0SLudqvdd-icTY48MOwCG-RAQsHiqGZkSgyhxiyCZIshVCtxJuFg6zJyi9-_19Xm5gbyj5DFaI3z3Z2ZvGItFCeklsE99oLTlu6cuK5EZDM5-WloflVSnK0D6GoikzVlFkDDeDX4UAdzpD2LkX52rQZwpbEPc8LPde6w418TkGiGTH8fhS_tdH8e2iR2wpXppZiPH_aZSYEnWVBbLTUHq8AlibnmzzYxeOdrNvgTCFk-SIIbfQcTt40WQG1AE-X6Gr2fW-vfqD3Gw6Z_XYJfhek\"\n      }\n  }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Register",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/registration",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/registration"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"natus\",\"email\":\"mdrabiulhasan.me@gmail.com\",\"password\":\"123456\",\"confirm_password\":\"123456\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n          \"success\": true,\n          \"status_code\": 200,\n          \"message\": \"User register successfully.\",\n          \"data\": {\n              \"name\": \"Ariful Islam\",\n              \"token_type\": \"Bearer\",\n              \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzQ4N2I2ZjI5YWM5YTIxNTI3ZjUwM2Y1ZjY3NGI2YTRkNzEwMTliZDlkNDIyMjM1ODQ1YjkzMzMzYzBjYTQ2NzIwZWEyZjQyOGFjZDk3ZjkiLCJpYXQiOjE2NjM5OTcyNDQuODM1NjA1LCJuYmYiOjE2NjM5OTcyNDQuODM1NjEsImV4cCI6MTY5NTUzMzI0NC43NzEyMDUsInN1YiI6IjYiLCJzY29wZXMiOltdfQ.WumQps2r4O8k8AF3jVaHSb09sivZJFHarVADfkFdR5V8EN9M2j_6_6mvqMiB_OAfwZ3hKF_X9H4q5WSjT3P4_-Z-NjmhFaVaAd9-P1boq9JNrCtO9pG8fybLSqeLRm2u15tLs0c-LuPHkpbhJgqN-JVMFVIIQXZe4TGBO57k5eiPvN0sB_Go5OOjxPaQbzE3hGeeeng4dshQ0ThMtaNgq4eLEM7hKXAtkToq7e1CJtQCE_fzM4A4uDLhqXYk_SrA2GpozNkvLDD8i8V91ynfFj3Jp94w6YrIB2jZ9PWDIG2-rpdLB2_Q-GFYrK09Da_aCXe1TJ3lRULJmF44FqvJWekz6xLrhL6NKHEaT0wkAe4Z7H5va8pj_yHcJWHoyr7Lt2q5Ta7cCHmm_fKtg-IHqBHuaBhHODwebxMggCfIpwv1NkK82CiKELNO70xGmExRM3VDGVSNO9Pm-kC5UWvuEU8lm5reIe-dsETTiz8gVvfjI-cO2f7G0KpW0Jiae6AdcPOiSIQpGEiqC7Q49M5cphzHB3knvsysRXbfiSS5j5hueyYOHhkTk0GQpuhAyCQUNbsIF1ek_B8MZBsME2y446ZS37pzKcYnVOTFfan2xvu6zKl32yAg3h46jk86qgd3gcGQOABGL7wtsQKWk7dw2DChd-nfLSh75gXD1e1JT7U\"\n          }\n      }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Forget-Password",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/forget-password",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/forget-password"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"mdrabiulhasan.me@gmail.com\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 200,\n      \"message\": \"Password reset mail sent.\",\n      \"data\": {\n          \"reset_token\": \"VuEQfdGr4uTDOFNWGUEb\"\n      }\n  }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "User Information",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/user-info",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/user-info"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 200,\n      \"message\": \"User Fetch successfully.\",\n      \"data\": {\n          \"name\": \"Rabiul Hasan\",\n          \"email\": \"rabiul.fci@gmail.com\"\n      }\n  }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Password-Reset",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/reset-password\/:token",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/reset-password\/:token",
+                            "variable": [
+                                {
+                                    "id": "token",
+                                    "key": "token",
+                                    "value": "VuEQfdGr4uTDOFNWGUEb",
+                                    "description": "The token for the password-reset."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"password\":\"123456\",\"confirm_password\":\"123456\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 200,\n      \"message\": \"User Password Reset successfully. Please login\",\n      \"data\": {\n          \"name\": \"Rabiul Hasan\",\n          \"token_type\": \"Bearer\",\n          \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjY1NjU1NjFkZmY3ZWM4MzMyMWE5YTQzMjgyNDExMzYxMWMyYjRjZDk4YWExODMzMmQ5NDQ0MzliZWMzMGMzOGE2ODJhZjg1NjQ0Y2ZhOGEiLCJpYXQiOjE2NjM5OTc1MjkuMjk0NTQyLCJuYmYiOjE2NjM5OTc1MjkuMjk0NTQ3LCJleHAiOjE2OTU1MzM1MjkuMjU2NjIsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.E96NWszsK4GEVgUuDKM7hpNgr8Z6aY7mZur68PJuPPAh5qsFYBVoIx0RO0K-tcfs6fegm3cwTM9HZK9ezhHFbuexcdQt_OlMDDqtNVPYQERhuqzTsdUUUeQFnRdeLRo-0vw76LaJJT6JYdaZIJqEE0mXCmiwZyd3J3ocjm9yVAFAQHlvpljBWmdPr23ktNS3K_Srwpvhc9Cb158ZLZlMjoHO2ObAE3QBwOvG8Iybj_SZSFxuwcwtGQfJKSmwsBzWmgAYcK3IwBBGJ_lOuDsl-nZnha7oQyyKRVGAqJ7RfSalKfdE8P64Q7-Z8QVLxBOhBGpWjj-48Qx7bLkdmuZUqRW5H2w6sUs4Lj2A_Md3iJqh3Q3F7RpNEH3DuCGK9cBlopovr8Mwq-FDohR9ehEKTORz9ImssJvCe1J4SgEetE11LXloi3_x1sy_BwfLQsJLw7_ofV0eSCPt0oEfe-ORNrqs_aoKY_TfinkcEKTG5IDg6eHvWkeigZvFlv-ex_pAmn0UbG2INuwA-0ZCLSlIydosOu6AkUlqSgUnt0kgN9wNY8pWOGbLchvPBUMVREFYb_BGtPTkmk7y8cnFGEnt45kMFP3EjMEk2j0CrqVZj9xqnaJO401UEHN2cjVQVrZEIB2iBWt-DKAoonl4qFsC-2vs0Nc173bpH9TPxOAA_Fc\"\n      }\n  }",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Category",
+            "description": "",
+            "item": [
+                {
+                    "name": "Category List",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/categories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 200,\n      \"message\": \"Category fetch successfully.\",\n      \"data\": [\n          {\n             \"id\": 2,\n              \"name\": \"Iphone 14\",\n              \"created_at\": \"22nd September, 2022\"\n          }\n      ]\n  }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Add Category",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/categories"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"iphone\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 201,\n      \"message\": \"Category created successfully.\"\n  }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show Single Category",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/categories\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/categories\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "This id require for fetching category details."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 201,\n      \"message\": \"Category fetch successfully.\",\n      \"data\": {\n          \"id\": 1,\n          \"name\": \"Iphone 14\",\n          \"created_at\": \"22nd September, 2022\"\n      }\n  }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update Category",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/categories\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/categories\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "This id require for updating category details."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"iphone\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 201,\n      \"message\": \"Category updated successfully.\"\n  }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete Category",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/categories\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/categories\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "This id require for fetching category details."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 200,\n      \"message\": \"Category deleted successfully.\"\n  }",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "api\/v1\/products\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/products\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/products\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the product."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Guest",
+            "description": "",
+            "item": [
+                {
+                    "name": "Product List",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/guest\/products",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/guest\/products"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n       \"success\": true,\n       \"status_code\": 200,\n       \"message\": \"Product fetch successfully.\",\n       \"data\": [\n           {\n              \"id\": 16,\n              \"name\": \"Nokia 1200\",\n              \"details\": \"Old Iphone\",\n              \"price\": \"34.00\",\n              \"image\": \"http:\/\/localhost\/Learning\/appnap-assignment\/backend\/public\/storage\/product-images\/JDZ3ICe9dVBoYVtItuXa4xkLHnMRGb3MrBs1QAj8.png\",\n              \"category\": \"Nokia\",\n              \"category_id\": 3,\n              \"user\": \"Rabiul Hasan\",\n              \"created_at\": \"23rd September, 2022\"\n          }\n      ]\n  }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Product Details",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/guest\/products\/:product_id\/details",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/guest\/products\/:product_id\/details",
+                            "variable": [
+                                {
+                                    "id": "product_id",
+                                    "key": "product_id",
+                                    "value": "1",
+                                    "description": "The ID of the product."
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "This id require for fetching product details."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 201,\n      \"message\": \"Product fetch successfully.\",\n      \"data\": {\n          \"id\": 16,\n          \"name\": \"Nokia 1200\",\n          \"details\": \"Old Iphone\",\n          \"price\": \"34.00\",\n          \"image\": \"http:\/\/localhost\/Learning\/appnap-assignment\/backend\/public\/storage\/product-images\/JDZ3ICe9dVBoYVtItuXa4xkLHnMRGb3MrBs1QAj8.png\",\n          \"category\": \"Nokia\",\n          \"category_id\": 3,\n          \"user\": \"Rabiul Hasan\",\n          \"created_at\": \"23rd September, 2022\"\n      }\n  }",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Product",
+            "description": "",
+            "item": [
+                {
+                    "name": "Product List",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/products",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/products"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n       \"success\": true,\n       \"status_code\": 200,\n       \"message\": \"Product fetch successfully.\",\n       \"data\": [\n           {\n              \"id\": 16,\n              \"name\": \"Nokia 1200\",\n              \"details\": \"Old Iphone\",\n              \"price\": \"34.00\",\n              \"image\": \"http:\/\/localhost\/Learning\/appnap-assignment\/backend\/public\/storage\/product-images\/JDZ3ICe9dVBoYVtItuXa4xkLHnMRGb3MrBs1QAj8.png\",\n              \"category\": \"Nokia\",\n              \"category_id\": 3,\n              \"user\": \"Rabiul Hasan\",\n              \"created_at\": \"23rd September, 2022\"\n          }\n      ]\n  }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Add Product",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/products",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/products"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "Iphone-13",
+                                    "type": "text",
+                                    "description": "required."
+                                },
+                                {
+                                    "key": "details",
+                                    "value": "old-iphone",
+                                    "type": "text",
+                                    "description": "required."
+                                },
+                                {
+                                    "key": "price",
+                                    "value": 999,
+                                    "type": "text",
+                                    "description": "required."
+                                },
+                                {
+                                    "key": "category_id",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "required."
+                                },
+                                {
+                                    "key": "image",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 201,\n      \"message\": \"Product created successfully.\"\n  }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show Single Product",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/products\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/products\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "This id require for fetching product details."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 201,\n      \"message\": \"Product fetch successfully.\",\n      \"data\": {\n          \"id\": 16,\n          \"name\": \"Nokia 1200\",\n          \"details\": \"Old Iphone\",\n          \"price\": \"34.00\",\n          \"image\": \"http:\/\/localhost\/Learning\/appnap-assignment\/backend\/public\/storage\/product-images\/JDZ3ICe9dVBoYVtItuXa4xkLHnMRGb3MrBs1QAj8.png\",\n          \"category\": \"Nokia\",\n          \"category_id\": 3,\n          \"user\": \"Rabiul Hasan\",\n          \"created_at\": \"23rd September, 2022\"\n      }\n  }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete Product",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/products\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/products\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "This id require for delete product details."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 200,\n      \"message\": \"Product deleted successfully.\"\n  }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update Product",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/products\/update\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/products\/update\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "This id require for updating product details."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "Iphone-13",
+                                    "type": "text",
+                                    "description": "required."
+                                },
+                                {
+                                    "key": "details",
+                                    "value": "old-iphone",
+                                    "type": "text",
+                                    "description": "required."
+                                },
+                                {
+                                    "key": "price",
+                                    "value": 999,
+                                    "type": "text",
+                                    "description": "required."
+                                },
+                                {
+                                    "key": "category_id",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "required."
+                                },
+                                {
+                                    "key": "image",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"success\": true,\n      \"status_code\": 201,\n      \"message\": \"Category updated successfully.\"\n  }",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

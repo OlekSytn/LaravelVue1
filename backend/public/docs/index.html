@@ -1,0 +1,2529 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Appnap Assignment API Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .javascript-example code { display: none; }
+                    body .content .bash-example code { display: none; }
+            </style>
+
+    <script>
+        var baseUrl = "http://localhost";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-3.37.2.js"></script>
+
+    <script src="../docs/js/theme-default-3.37.2.js"></script>
+
+</head>
+
+<body data-languages="[&quot;javascript&quot;,&quot;bash&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+    </span>
+</a>
+<div class="tocify-wrapper">
+            <img src="./../logo.png" alt="logo" class="logo" style="padding-top: 10px;" width="100%"/>
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                                                                            <ul id="tocify-header-0" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="introduction">
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                                            
+                                                                    </ul>
+                                                <ul id="tocify-header-1" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="authenticating-requests">
+                        <a href="#authenticating-requests">Authenticating requests</a>
+                    </li>
+                                            
+                                                </ul>
+                    
+                    <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authentication">
+                    <a href="#authentication">Authentication</a>
+                </li>
+                                    <ul id="tocify-subheader-authentication" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="authentication-POSTapi-v1-auth-login">
+                        <a href="#authentication-POSTapi-v1-auth-login">Login</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="authentication-POSTapi-v1-auth-registration">
+                        <a href="#authentication-POSTapi-v1-auth-registration">Register</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="authentication-POSTapi-v1-auth-forget-password">
+                        <a href="#authentication-POSTapi-v1-auth-forget-password">Forget-Password</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="authentication-GETapi-v1-auth-user-info">
+                        <a href="#authentication-GETapi-v1-auth-user-info">User Information</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="authentication-POSTapi-v1-auth-reset-password--token-">
+                        <a href="#authentication-POSTapi-v1-auth-reset-password--token-">Password-Reset</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="category">
+                    <a href="#category">Category</a>
+                </li>
+                                    <ul id="tocify-subheader-category" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="category-GETapi-v1-categories">
+                        <a href="#category-GETapi-v1-categories">Category List</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="category-POSTapi-v1-categories">
+                        <a href="#category-POSTapi-v1-categories">Add Category</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="category-GETapi-v1-categories--id-">
+                        <a href="#category-GETapi-v1-categories--id-">Show Single Category</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="category-PUTapi-v1-categories--id-">
+                        <a href="#category-PUTapi-v1-categories--id-">Update Category</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="category-DELETEapi-v1-categories--id-">
+                        <a href="#category-DELETEapi-v1-categories--id-">Delete Category</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="endpoints">
+                    <a href="#endpoints">Endpoints</a>
+                </li>
+                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-PUTapi-v1-products--id-">
+                        <a href="#endpoints-PUTapi-v1-products--id-">PUT api/v1/products/{id}</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-5" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="guest">
+                    <a href="#guest">Guest</a>
+                </li>
+                                    <ul id="tocify-subheader-guest" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="guest-GETapi-v1-guest-products">
+                        <a href="#guest-GETapi-v1-guest-products">Product List</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="guest-GETapi-v1-guest-products--product_id--details">
+                        <a href="#guest-GETapi-v1-guest-products--product_id--details">Product Details</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-6" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="product">
+                    <a href="#product">Product</a>
+                </li>
+                                    <ul id="tocify-subheader-product" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="product-GETapi-v1-products">
+                        <a href="#product-GETapi-v1-products">Product List</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="product-POSTapi-v1-products">
+                        <a href="#product-POSTapi-v1-products">Add Product</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="product-GETapi-v1-products--id-">
+                        <a href="#product-GETapi-v1-products--id-">Show Single Product</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="product-DELETEapi-v1-products--id-">
+                        <a href="#product-DELETEapi-v1-products--id-">Delete Product</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="product-POSTapi-v1-products-update--id-">
+                        <a href="#product-POSTapi-v1-products-update--id-">Update Product</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+        
+                        
+            </div>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                            <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                    </ul>
+        <ul class="toc-footer" id="last-updated">
+        <li>Last updated: September 24 2022</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>Md.Rabiul Hasan appnap assignment api documentation.</p>
+<aside>Authentication Features:
+<ul>
+<li>Login</li>
+<li>Registration</li>
+<li>Forget-Password Send Recover Link Mail</li>
+<li>Reset Password</li>
+</ul>
+Project Features
+<ul>
+<li>Category CRUD API</li>
+<li>Product CRUD API with category & user relationship</li>
+</ul></aside>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://localhost/Learning/appnap-assignment/backend/api/v1</code></pre>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="authentication">Authentication</h1>
+
+    
+
+            <h2 id="authentication-POSTapi-v1-auth-login">Login</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-auth-login">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/auth/login"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "mdrabiulhasan.me@gmail.com",
+    "password": "123456"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/auth/login" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"mdrabiulhasan.me@gmail.com\",
+    \"password\": \"123456\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-auth-login">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;User login successfully.&quot;,
+    &quot;data&quot;: {
+        &quot;name&quot;: &quot;Rabiul Hasan&quot;,
+        &quot;token_type&quot;: &quot;Bearer&quot;,
+        &quot;token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZDkxMWQ2ZWU3ODliZGE5NzZlNmYyYjdhOGVjNGJkYzBhMjUxMzRjNTExMTQ3OGM0NzQwZWVlY2ZiMDNjMDExNThhMDQ0MjYzZWYwNDcxNmMiLCJpYXQiOjE2NjM5OTcwMjYuMDY1MzczLCJuYmYiOjE2NjM5OTcwMjYuMDY1Mzc5LCJleHAiOjE2OTU1MzMwMjUuODk3MzQ5LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mdGij29naRU4_0munG-pkV2qqGdilPcqjz9lnTdl_L5FW5b-eaX8gwm9EDWxUlAM8wLq1BnvYM3ahOyO61he_ZA_S8aeeGeRMg4ymc8ZYGxjj1XT_d7YhEIx1sOBj9g7dVlXrk76b5DCejATxk8MPahQduxg51oRwTDum-9MMuAoazf6g6kEAc7IemELQPPI7MsoySCYYjQef2ZDV3UKsmTKXYsw81YPse6TWEvrEaRUOE5DzjwLEPj806vYcgIbq5ExMGRYH49uV09N6kTlxMW8zuAqL23VJTyl1SI_9JhlFQdy__ufC7zAZh5S-PKvByrlIltfCgdsE17a90YZBzmp0uj9GgQTH5inNx9ekpRpMcVb6ZvXjlPccj8TGCTsNy7MajPP9DedFG-hECFE0SLudqvdd-icTY48MOwCG-RAQsHiqGZkSgyhxiyCZIshVCtxJuFg6zJyi9-_19Xm5gbyj5DFaI3z3Z2ZvGItFCeklsE99oLTlu6cuK5EZDM5-WloflVSnK0D6GoikzVlFkDDeDX4UAdzpD2LkX52rQZwpbEPc8LPde6w418TkGiGTH8fhS_tdH8e2iR2wpXppZiPH_aZSYEnWVBbLTUHq8AlibnmzzYxeOdrNvgTCFk-SIIbfQcTt40WQG1AE-X6Gr2fW-vfqD3Gw6Z_XYJfhek&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-auth-login" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-auth-login"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-auth-login"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-auth-login" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-auth-login"></code></pre>
+</span>
+<form id="form-POSTapi-v1-auth-login" data-method="POST"
+      data-path="api/v1/auth/login"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-login', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-auth-login"
+                    onclick="tryItOut('POSTapi-v1-auth-login');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-auth-login"
+                    onclick="cancelTryOut('POSTapi-v1-auth-login');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-auth-login" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/auth/login</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-v1-auth-login"
+               value="mdrabiulhasan.me@gmail.com"
+               data-component="body" hidden>
+    <br>
+<p>required. Email for login</p>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-v1-auth-login"
+               value="123456"
+               data-component="body" hidden>
+    <br>
+<p>required. Passwrod for login</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="authentication-POSTapi-v1-auth-registration">Register</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-auth-registration">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/auth/registration"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "natus",
+    "email": "mdrabiulhasan.me@gmail.com",
+    "password": "123456",
+    "confirm_password": "123456"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/auth/registration" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"natus\",
+    \"email\": \"mdrabiulhasan.me@gmail.com\",
+    \"password\": \"123456\",
+    \"confirm_password\": \"123456\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-auth-registration">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;User register successfully.&quot;,
+    &quot;data&quot;: {
+        &quot;name&quot;: &quot;Ariful Islam&quot;,
+        &quot;token_type&quot;: &quot;Bearer&quot;,
+        &quot;token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzQ4N2I2ZjI5YWM5YTIxNTI3ZjUwM2Y1ZjY3NGI2YTRkNzEwMTliZDlkNDIyMjM1ODQ1YjkzMzMzYzBjYTQ2NzIwZWEyZjQyOGFjZDk3ZjkiLCJpYXQiOjE2NjM5OTcyNDQuODM1NjA1LCJuYmYiOjE2NjM5OTcyNDQuODM1NjEsImV4cCI6MTY5NTUzMzI0NC43NzEyMDUsInN1YiI6IjYiLCJzY29wZXMiOltdfQ.WumQps2r4O8k8AF3jVaHSb09sivZJFHarVADfkFdR5V8EN9M2j_6_6mvqMiB_OAfwZ3hKF_X9H4q5WSjT3P4_-Z-NjmhFaVaAd9-P1boq9JNrCtO9pG8fybLSqeLRm2u15tLs0c-LuPHkpbhJgqN-JVMFVIIQXZe4TGBO57k5eiPvN0sB_Go5OOjxPaQbzE3hGeeeng4dshQ0ThMtaNgq4eLEM7hKXAtkToq7e1CJtQCE_fzM4A4uDLhqXYk_SrA2GpozNkvLDD8i8V91ynfFj3Jp94w6YrIB2jZ9PWDIG2-rpdLB2_Q-GFYrK09Da_aCXe1TJ3lRULJmF44FqvJWekz6xLrhL6NKHEaT0wkAe4Z7H5va8pj_yHcJWHoyr7Lt2q5Ta7cCHmm_fKtg-IHqBHuaBhHODwebxMggCfIpwv1NkK82CiKELNO70xGmExRM3VDGVSNO9Pm-kC5UWvuEU8lm5reIe-dsETTiz8gVvfjI-cO2f7G0KpW0Jiae6AdcPOiSIQpGEiqC7Q49M5cphzHB3knvsysRXbfiSS5j5hueyYOHhkTk0GQpuhAyCQUNbsIF1ek_B8MZBsME2y446ZS37pzKcYnVOTFfan2xvu6zKl32yAg3h46jk86qgd3gcGQOABGL7wtsQKWk7dw2DChd-nfLSh75gXD1e1JT7U&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-auth-registration" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-auth-registration"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-auth-registration"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-auth-registration" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-auth-registration"></code></pre>
+</span>
+<form id="form-POSTapi-v1-auth-registration" data-method="POST"
+      data-path="api/v1/auth/registration"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-registration', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-auth-registration"
+                    onclick="tryItOut('POSTapi-v1-auth-registration');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-auth-registration"
+                    onclick="cancelTryOut('POSTapi-v1-auth-registration');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-auth-registration" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/auth/registration</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-v1-auth-registration"
+               value="natus"
+               data-component="body" hidden>
+    <br>
+<p>required. Md.Rabiul Hasan</p>
+        </p>
+                <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-v1-auth-registration"
+               value="mdrabiulhasan.me@gmail.com"
+               data-component="body" hidden>
+    <br>
+<p>required. Email for login</p>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-v1-auth-registration"
+               value="123456"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+                <p>
+            <b><code>confirm_password</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="confirm_password"
+               data-endpoint="POSTapi-v1-auth-registration"
+               value="123456"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="authentication-POSTapi-v1-auth-forget-password">Forget-Password</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-auth-forget-password">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/auth/forget-password"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "mdrabiulhasan.me@gmail.com"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/auth/forget-password" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"mdrabiulhasan.me@gmail.com\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-auth-forget-password">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;Password reset mail sent.&quot;,
+    &quot;data&quot;: {
+        &quot;reset_token&quot;: &quot;VuEQfdGr4uTDOFNWGUEb&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-auth-forget-password" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-auth-forget-password"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-auth-forget-password"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-auth-forget-password" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-auth-forget-password"></code></pre>
+</span>
+<form id="form-POSTapi-v1-auth-forget-password" data-method="POST"
+      data-path="api/v1/auth/forget-password"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-forget-password', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-auth-forget-password"
+                    onclick="tryItOut('POSTapi-v1-auth-forget-password');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-auth-forget-password"
+                    onclick="cancelTryOut('POSTapi-v1-auth-forget-password');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-auth-forget-password" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/auth/forget-password</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-v1-auth-forget-password"
+               value="mdrabiulhasan.me@gmail.com"
+               data-component="body" hidden>
+    <br>
+<p>required. Email for login</p>
+        </p>
+        </form>
+
+            <h2 id="authentication-GETapi-v1-auth-user-info">User Information</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-auth-user-info">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/auth/user-info"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer token",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/auth/user-info" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-auth-user-info">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;User Fetch successfully.&quot;,
+    &quot;data&quot;: {
+        &quot;name&quot;: &quot;Rabiul Hasan&quot;,
+        &quot;email&quot;: &quot;rabiul.fci@gmail.com&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-auth-user-info" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-auth-user-info"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-auth-user-info"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-auth-user-info" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-auth-user-info"></code></pre>
+</span>
+<form id="form-GETapi-v1-auth-user-info" data-method="GET"
+      data-path="api/v1/auth/user-info"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-auth-user-info', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-auth-user-info"
+                    onclick="tryItOut('GETapi-v1-auth-user-info');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-auth-user-info"
+                    onclick="cancelTryOut('GETapi-v1-auth-user-info');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-auth-user-info" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/auth/user-info</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-auth-user-info" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-auth-user-info"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="authentication-POSTapi-v1-auth-reset-password--token-">Password-Reset</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-auth-reset-password--token-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/auth/reset-password/VuEQfdGr4uTDOFNWGUEb"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "password": "123456",
+    "confirm_password": "123456"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/auth/reset-password/VuEQfdGr4uTDOFNWGUEb" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"password\": \"123456\",
+    \"confirm_password\": \"123456\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-auth-reset-password--token-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;User Password Reset successfully. Please login&quot;,
+    &quot;data&quot;: {
+        &quot;name&quot;: &quot;Rabiul Hasan&quot;,
+        &quot;token_type&quot;: &quot;Bearer&quot;,
+        &quot;token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjY1NjU1NjFkZmY3ZWM4MzMyMWE5YTQzMjgyNDExMzYxMWMyYjRjZDk4YWExODMzMmQ5NDQ0MzliZWMzMGMzOGE2ODJhZjg1NjQ0Y2ZhOGEiLCJpYXQiOjE2NjM5OTc1MjkuMjk0NTQyLCJuYmYiOjE2NjM5OTc1MjkuMjk0NTQ3LCJleHAiOjE2OTU1MzM1MjkuMjU2NjIsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.E96NWszsK4GEVgUuDKM7hpNgr8Z6aY7mZur68PJuPPAh5qsFYBVoIx0RO0K-tcfs6fegm3cwTM9HZK9ezhHFbuexcdQt_OlMDDqtNVPYQERhuqzTsdUUUeQFnRdeLRo-0vw76LaJJT6JYdaZIJqEE0mXCmiwZyd3J3ocjm9yVAFAQHlvpljBWmdPr23ktNS3K_Srwpvhc9Cb158ZLZlMjoHO2ObAE3QBwOvG8Iybj_SZSFxuwcwtGQfJKSmwsBzWmgAYcK3IwBBGJ_lOuDsl-nZnha7oQyyKRVGAqJ7RfSalKfdE8P64Q7-Z8QVLxBOhBGpWjj-48Qx7bLkdmuZUqRW5H2w6sUs4Lj2A_Md3iJqh3Q3F7RpNEH3DuCGK9cBlopovr8Mwq-FDohR9ehEKTORz9ImssJvCe1J4SgEetE11LXloi3_x1sy_BwfLQsJLw7_ofV0eSCPt0oEfe-ORNrqs_aoKY_TfinkcEKTG5IDg6eHvWkeigZvFlv-ex_pAmn0UbG2INuwA-0ZCLSlIydosOu6AkUlqSgUnt0kgN9wNY8pWOGbLchvPBUMVREFYb_BGtPTkmk7y8cnFGEnt45kMFP3EjMEk2j0CrqVZj9xqnaJO401UEHN2cjVQVrZEIB2iBWt-DKAoonl4qFsC-2vs0Nc173bpH9TPxOAA_Fc&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-auth-reset-password--token-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-auth-reset-password--token-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-auth-reset-password--token-"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-auth-reset-password--token-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-auth-reset-password--token-"></code></pre>
+</span>
+<form id="form-POSTapi-v1-auth-reset-password--token-" data-method="POST"
+      data-path="api/v1/auth/reset-password/{token}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-reset-password--token-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-auth-reset-password--token-"
+                    onclick="tryItOut('POSTapi-v1-auth-reset-password--token-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-auth-reset-password--token-"
+                    onclick="cancelTryOut('POSTapi-v1-auth-reset-password--token-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-auth-reset-password--token-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/auth/reset-password/{token}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="token"
+               data-endpoint="POSTapi-v1-auth-reset-password--token-"
+               value="VuEQfdGr4uTDOFNWGUEb"
+               data-component="url" hidden>
+    <br>
+<p>The token for the password-reset.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-v1-auth-reset-password--token-"
+               value="123456"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+                <p>
+            <b><code>confirm_password</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="confirm_password"
+               data-endpoint="POSTapi-v1-auth-reset-password--token-"
+               value="123456"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+        </form>
+
+        <h1 id="category">Category</h1>
+
+    
+
+            <h2 id="category-GETapi-v1-categories">Category List</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-categories">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/categories"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer token",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/categories" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-categories">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;Category fetch successfully.&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Iphone 14&quot;,
+            &quot;created_at&quot;: &quot;22nd September, 2022&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-categories" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-categories"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-categories"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-categories" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-categories"></code></pre>
+</span>
+<form id="form-GETapi-v1-categories" data-method="GET"
+      data-path="api/v1/categories"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-categories', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-categories"
+                    onclick="tryItOut('GETapi-v1-categories');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-categories"
+                    onclick="cancelTryOut('GETapi-v1-categories');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-categories" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/categories</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-categories" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-categories"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="category-POSTapi-v1-categories">Add Category</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-categories">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/categories"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer token",
+};
+
+let body = {
+    "name": "iphone"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/categories" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer token" \
+    --data "{
+    \"name\": \"iphone\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-categories">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 201,
+    &quot;message&quot;: &quot;Category created successfully.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-categories" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-categories"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-categories"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-categories" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-categories"></code></pre>
+</span>
+<form id="form-POSTapi-v1-categories" data-method="POST"
+      data-path="api/v1/categories"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-categories', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-categories"
+                    onclick="tryItOut('POSTapi-v1-categories');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-categories"
+                    onclick="cancelTryOut('POSTapi-v1-categories');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-categories" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/categories</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-categories" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-categories"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-v1-categories"
+               value="iphone"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="category-GETapi-v1-categories--id-">Show Single Category</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-categories--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/categories/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer token",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/categories/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-categories--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 201,
+    &quot;message&quot;: &quot;Category fetch successfully.&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Iphone 14&quot;,
+        &quot;created_at&quot;: &quot;22nd September, 2022&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-categories--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-categories--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-categories--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-categories--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-categories--id-"></code></pre>
+</span>
+<form id="form-GETapi-v1-categories--id-" data-method="GET"
+      data-path="api/v1/categories/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-categories--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-categories--id-"
+                    onclick="tryItOut('GETapi-v1-categories--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-categories--id-"
+                    onclick="cancelTryOut('GETapi-v1-categories--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-categories--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/categories/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-categories--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-categories--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-v1-categories--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>This id require for fetching category details.</p>
+            </p>
+                    </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="category-PUTapi-v1-categories--id-">Update Category</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-v1-categories--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/categories/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer token",
+};
+
+let body = {
+    "name": "iphone"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/categories/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer token" \
+    --data "{
+    \"name\": \"iphone\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-categories--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 201,
+    &quot;message&quot;: &quot;Category updated successfully.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-v1-categories--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-categories--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-categories--id-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-categories--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-categories--id-"></code></pre>
+</span>
+<form id="form-PUTapi-v1-categories--id-" data-method="PUT"
+      data-path="api/v1/categories/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-categories--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-categories--id-"
+                    onclick="tryItOut('PUTapi-v1-categories--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-categories--id-"
+                    onclick="cancelTryOut('PUTapi-v1-categories--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-categories--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/categories/{id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/v1/categories/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-v1-categories--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-v1-categories--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="PUTapi-v1-categories--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>This id require for updating category details.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="PUTapi-v1-categories--id-"
+               value="iphone"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="category-DELETEapi-v1-categories--id-">Delete Category</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-v1-categories--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/categories/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer token",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/categories/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-v1-categories--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;Category deleted successfully.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-v1-categories--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-v1-categories--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-v1-categories--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-v1-categories--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-v1-categories--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-v1-categories--id-" data-method="DELETE"
+      data-path="api/v1/categories/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-categories--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-v1-categories--id-"
+                    onclick="tryItOut('DELETEapi-v1-categories--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-v1-categories--id-"
+                    onclick="cancelTryOut('DELETEapi-v1-categories--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-v1-categories--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v1/categories/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-v1-categories--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-v1-categories--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="DELETEapi-v1-categories--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>This id require for fetching category details.</p>
+            </p>
+                    </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+            <h1 id="endpoints">Endpoints</h1>
+
+    
+
+            <h2 id="endpoints-PUTapi-v1-products--id-">PUT api/v1/products/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-v1-products--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/products/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/products/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-products--id-">
+</span>
+<span id="execution-results-PUTapi-v1-products--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-products--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-products--id-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-products--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-products--id-"></code></pre>
+</span>
+<form id="form-PUTapi-v1-products--id-" data-method="PUT"
+      data-path="api/v1/products/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-products--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-products--id-"
+                    onclick="tryItOut('PUTapi-v1-products--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-products--id-"
+                    onclick="cancelTryOut('PUTapi-v1-products--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-products--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/products/{id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/v1/products/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="PUTapi-v1-products--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the product.</p>
+            </p>
+                    </form>
+
+        <h1 id="guest">Guest</h1>
+
+    
+
+            <h2 id="guest-GETapi-v1-guest-products">Product List</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-guest-products">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/guest/products"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/guest/products" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-guest-products">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;Product fetch successfully.&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 16,
+            &quot;name&quot;: &quot;Nokia 1200&quot;,
+            &quot;details&quot;: &quot;Old Iphone&quot;,
+            &quot;price&quot;: &quot;34.00&quot;,
+            &quot;image&quot;: &quot;http://localhost/Learning/appnap-assignment/backend/public/storage/product-images/JDZ3ICe9dVBoYVtItuXa4xkLHnMRGb3MrBs1QAj8.png&quot;,
+            &quot;category&quot;: &quot;Nokia&quot;,
+            &quot;category_id&quot;: 3,
+            &quot;user&quot;: &quot;Rabiul Hasan&quot;,
+            &quot;created_at&quot;: &quot;23rd September, 2022&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-guest-products" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-guest-products"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-guest-products"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-guest-products" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-guest-products"></code></pre>
+</span>
+<form id="form-GETapi-v1-guest-products" data-method="GET"
+      data-path="api/v1/guest/products"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-guest-products', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-guest-products"
+                    onclick="tryItOut('GETapi-v1-guest-products');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-guest-products"
+                    onclick="cancelTryOut('GETapi-v1-guest-products');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-guest-products" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/guest/products</code></b>
+        </p>
+                    </form>
+
+            <h2 id="guest-GETapi-v1-guest-products--product_id--details">Product Details</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-guest-products--product_id--details">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/guest/products/1/details"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/guest/products/1/details" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-guest-products--product_id--details">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 201,
+    &quot;message&quot;: &quot;Product fetch successfully.&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 16,
+        &quot;name&quot;: &quot;Nokia 1200&quot;,
+        &quot;details&quot;: &quot;Old Iphone&quot;,
+        &quot;price&quot;: &quot;34.00&quot;,
+        &quot;image&quot;: &quot;http://localhost/Learning/appnap-assignment/backend/public/storage/product-images/JDZ3ICe9dVBoYVtItuXa4xkLHnMRGb3MrBs1QAj8.png&quot;,
+        &quot;category&quot;: &quot;Nokia&quot;,
+        &quot;category_id&quot;: 3,
+        &quot;user&quot;: &quot;Rabiul Hasan&quot;,
+        &quot;created_at&quot;: &quot;23rd September, 2022&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-guest-products--product_id--details" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-guest-products--product_id--details"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-guest-products--product_id--details"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-guest-products--product_id--details" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-guest-products--product_id--details"></code></pre>
+</span>
+<form id="form-GETapi-v1-guest-products--product_id--details" data-method="GET"
+      data-path="api/v1/guest/products/{product_id}/details"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-guest-products--product_id--details', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-guest-products--product_id--details"
+                    onclick="tryItOut('GETapi-v1-guest-products--product_id--details');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-guest-products--product_id--details"
+                    onclick="cancelTryOut('GETapi-v1-guest-products--product_id--details');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-guest-products--product_id--details" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/guest/products/{product_id}/details</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>product_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="product_id"
+               data-endpoint="GETapi-v1-guest-products--product_id--details"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the product.</p>
+            </p>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-v1-guest-products--product_id--details"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>This id require for fetching product details.</p>
+            </p>
+                    </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+            <h1 id="product">Product</h1>
+
+    
+
+            <h2 id="product-GETapi-v1-products">Product List</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-products">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/products"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer token",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/products" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-products">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;Product fetch successfully.&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 16,
+            &quot;name&quot;: &quot;Nokia 1200&quot;,
+            &quot;details&quot;: &quot;Old Iphone&quot;,
+            &quot;price&quot;: &quot;34.00&quot;,
+            &quot;image&quot;: &quot;http://localhost/Learning/appnap-assignment/backend/public/storage/product-images/JDZ3ICe9dVBoYVtItuXa4xkLHnMRGb3MrBs1QAj8.png&quot;,
+            &quot;category&quot;: &quot;Nokia&quot;,
+            &quot;category_id&quot;: 3,
+            &quot;user&quot;: &quot;Rabiul Hasan&quot;,
+            &quot;created_at&quot;: &quot;23rd September, 2022&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-products" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-products"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-products"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-products" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-products"></code></pre>
+</span>
+<form id="form-GETapi-v1-products" data-method="GET"
+      data-path="api/v1/products"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-products', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-products"
+                    onclick="tryItOut('GETapi-v1-products');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-products"
+                    onclick="cancelTryOut('GETapi-v1-products');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-products" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/products</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-products" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-products"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="product-POSTapi-v1-products">Add Product</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-products">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/products"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+    "Authorization": "Bearer token",
+};
+
+const body = new FormData();
+body.append('name', 'Iphone-13');
+body.append('details', 'old-iphone');
+body.append('price', '999');
+body.append('category_id', '1');
+body.append('image', document.querySelector('input[name="image"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/products" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer token" \
+    --form "name=Iphone-13" \
+    --form "details=old-iphone" \
+    --form "price=999" \
+    --form "category_id=1" \
+    --form "image=@C:\Users\mdrab\AppData\Local\Temp\php7316.tmp" </code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-products">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 201,
+    &quot;message&quot;: &quot;Product created successfully.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-products" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-products"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-products"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-products" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-products"></code></pre>
+</span>
+<form id="form-POSTapi-v1-products" data-method="POST"
+      data-path="api/v1/products"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json","Authorization":"Bearer token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-products', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-products"
+                    onclick="tryItOut('POSTapi-v1-products');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-products"
+                    onclick="cancelTryOut('POSTapi-v1-products');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-products" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/products</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-products" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-products"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-v1-products"
+               value="Iphone-13"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+                <p>
+            <b><code>details</code></b>&nbsp;&nbsp;<small>text</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="details"
+               data-endpoint="POSTapi-v1-products"
+               value="old-iphone"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+                <p>
+            <b><code>price</code></b>&nbsp;&nbsp;<small>number</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="price"
+               data-endpoint="POSTapi-v1-products"
+               value="999"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+                <p>
+            <b><code>category_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="category_id"
+               data-endpoint="POSTapi-v1-products"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+                <p>
+            <b><code>image</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
+                <input type="file"
+               name="image"
+               data-endpoint="POSTapi-v1-products"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="product-GETapi-v1-products--id-">Show Single Product</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-products--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/products/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer token",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/products/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-products--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 201,
+    &quot;message&quot;: &quot;Product fetch successfully.&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 16,
+        &quot;name&quot;: &quot;Nokia 1200&quot;,
+        &quot;details&quot;: &quot;Old Iphone&quot;,
+        &quot;price&quot;: &quot;34.00&quot;,
+        &quot;image&quot;: &quot;http://localhost/Learning/appnap-assignment/backend/public/storage/product-images/JDZ3ICe9dVBoYVtItuXa4xkLHnMRGb3MrBs1QAj8.png&quot;,
+        &quot;category&quot;: &quot;Nokia&quot;,
+        &quot;category_id&quot;: 3,
+        &quot;user&quot;: &quot;Rabiul Hasan&quot;,
+        &quot;created_at&quot;: &quot;23rd September, 2022&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-products--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-products--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-products--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-products--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-products--id-"></code></pre>
+</span>
+<form id="form-GETapi-v1-products--id-" data-method="GET"
+      data-path="api/v1/products/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-products--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-products--id-"
+                    onclick="tryItOut('GETapi-v1-products--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-products--id-"
+                    onclick="cancelTryOut('GETapi-v1-products--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-products--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/products/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-products--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-products--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-v1-products--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>This id require for fetching product details.</p>
+            </p>
+                    </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="product-DELETEapi-v1-products--id-">Delete Product</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-v1-products--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/products/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer token",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/products/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-v1-products--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;Product deleted successfully.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-v1-products--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-v1-products--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-v1-products--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-v1-products--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-v1-products--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-v1-products--id-" data-method="DELETE"
+      data-path="api/v1/products/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-products--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-v1-products--id-"
+                    onclick="tryItOut('DELETEapi-v1-products--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-v1-products--id-"
+                    onclick="cancelTryOut('DELETEapi-v1-products--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-v1-products--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v1/products/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-v1-products--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-v1-products--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="DELETEapi-v1-products--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>This id require for delete product details.</p>
+            </p>
+                    </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="product-POSTapi-v1-products-update--id-">Update Product</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-products-update--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/products/update/1"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+    "Authorization": "Bearer token",
+};
+
+const body = new FormData();
+body.append('name', 'Iphone-13');
+body.append('details', 'old-iphone');
+body.append('price', '999');
+body.append('category_id', '1');
+body.append('image', document.querySelector('input[name="image"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/Learning/appnap-assignment/backend/api/v1/api/v1/products/update/1" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer token" \
+    --form "name=Iphone-13" \
+    --form "details=old-iphone" \
+    --form "price=999" \
+    --form "category_id=1" \
+    --form "image=@C:\Users\mdrab\AppData\Local\Temp\php7337.tmp" </code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-products-update--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;status_code&quot;: 201,
+    &quot;message&quot;: &quot;Category updated successfully.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-products-update--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-products-update--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-products-update--id-"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-products-update--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-products-update--id-"></code></pre>
+</span>
+<form id="form-POSTapi-v1-products-update--id-" data-method="POST"
+      data-path="api/v1/products/update/{id}"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json","Authorization":"Bearer token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-products-update--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-products-update--id-"
+                    onclick="tryItOut('POSTapi-v1-products-update--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-products-update--id-"
+                    onclick="cancelTryOut('POSTapi-v1-products-update--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-products-update--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/products/update/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-products-update--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-products-update--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="POSTapi-v1-products-update--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>This id require for updating product details.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-v1-products-update--id-"
+               value="Iphone-13"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+                <p>
+            <b><code>details</code></b>&nbsp;&nbsp;<small>text</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="details"
+               data-endpoint="POSTapi-v1-products-update--id-"
+               value="old-iphone"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+                <p>
+            <b><code>price</code></b>&nbsp;&nbsp;<small>number</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="price"
+               data-endpoint="POSTapi-v1-products-update--id-"
+               value="999"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+                <p>
+            <b><code>category_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="category_id"
+               data-endpoint="POSTapi-v1-products-update--id-"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>required.</p>
+        </p>
+                <p>
+            <b><code>image</code></b>&nbsp;&nbsp;<small>file</small>     <i>optional</i> &nbsp;
+                <input type="file"
+               name="image"
+               data-endpoint="POSTapi-v1-products-update--id-"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+        
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

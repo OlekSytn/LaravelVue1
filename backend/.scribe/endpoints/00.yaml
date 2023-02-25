@@ -1,0 +1,239 @@
+name: Authentication
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/auth/login
+    metadata:
+      title: Login
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'required. Email for login'
+        required: false
+        example: mdrabiulhasan.me@gmail.com
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'required. Passwrod for login'
+        required: false
+        example: '123456'
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 200,
+                "message": "User login successfully.",
+                "data": {
+                    "name": "Rabiul Hasan",
+                    "token_type": "Bearer",
+                    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZDkxMWQ2ZWU3ODliZGE5NzZlNmYyYjdhOGVjNGJkYzBhMjUxMzRjNTExMTQ3OGM0NzQwZWVlY2ZiMDNjMDExNThhMDQ0MjYzZWYwNDcxNmMiLCJpYXQiOjE2NjM5OTcwMjYuMDY1MzczLCJuYmYiOjE2NjM5OTcwMjYuMDY1Mzc5LCJleHAiOjE2OTU1MzMwMjUuODk3MzQ5LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.mdGij29naRU4_0munG-pkV2qqGdilPcqjz9lnTdl_L5FW5b-eaX8gwm9EDWxUlAM8wLq1BnvYM3ahOyO61he_ZA_S8aeeGeRMg4ymc8ZYGxjj1XT_d7YhEIx1sOBj9g7dVlXrk76b5DCejATxk8MPahQduxg51oRwTDum-9MMuAoazf6g6kEAc7IemELQPPI7MsoySCYYjQef2ZDV3UKsmTKXYsw81YPse6TWEvrEaRUOE5DzjwLEPj806vYcgIbq5ExMGRYH49uV09N6kTlxMW8zuAqL23VJTyl1SI_9JhlFQdy__ufC7zAZh5S-PKvByrlIltfCgdsE17a90YZBzmp0uj9GgQTH5inNx9ekpRpMcVb6ZvXjlPccj8TGCTsNy7MajPP9DedFG-hECFE0SLudqvdd-icTY48MOwCG-RAQsHiqGZkSgyhxiyCZIshVCtxJuFg6zJyi9-_19Xm5gbyj5DFaI3z3Z2ZvGItFCeklsE99oLTlu6cuK5EZDM5-WloflVSnK0D6GoikzVlFkDDeDX4UAdzpD2LkX52rQZwpbEPc8LPde6w418TkGiGTH8fhS_tdH8e2iR2wpXppZiPH_aZSYEnWVBbLTUHq8AlibnmzzYxeOdrNvgTCFk-SIIbfQcTt40WQG1AE-X6Gr2fW-vfqD3Gw6Z_XYJfhek"
+                }
+            }
+        headers: []
+        description: '200'
+    responseFields:
+      success:
+        name: success
+        description: 'The success of this API response is (`true` or `false`).'
+        type: boolean
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/auth/registration
+    metadata:
+      title: Register
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'required. Md.Rabiul Hasan'
+        required: false
+        example: natus
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'required. Email for login'
+        required: false
+        example: mdrabiulhasan.me@gmail.com
+        type: string
+        custom: []
+      password:
+        name: password
+        description: required.
+        required: false
+        example: '123456'
+        type: string
+        custom: []
+      confirm_password:
+        name: confirm_password
+        description: required.
+        required: false
+        example: '123456'
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                    "success": true,
+                    "status_code": 200,
+                    "message": "User register successfully.",
+                    "data": {
+                        "name": "Ariful Islam",
+                        "token_type": "Bearer",
+                        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzQ4N2I2ZjI5YWM5YTIxNTI3ZjUwM2Y1ZjY3NGI2YTRkNzEwMTliZDlkNDIyMjM1ODQ1YjkzMzMzYzBjYTQ2NzIwZWEyZjQyOGFjZDk3ZjkiLCJpYXQiOjE2NjM5OTcyNDQuODM1NjA1LCJuYmYiOjE2NjM5OTcyNDQuODM1NjEsImV4cCI6MTY5NTUzMzI0NC43NzEyMDUsInN1YiI6IjYiLCJzY29wZXMiOltdfQ.WumQps2r4O8k8AF3jVaHSb09sivZJFHarVADfkFdR5V8EN9M2j_6_6mvqMiB_OAfwZ3hKF_X9H4q5WSjT3P4_-Z-NjmhFaVaAd9-P1boq9JNrCtO9pG8fybLSqeLRm2u15tLs0c-LuPHkpbhJgqN-JVMFVIIQXZe4TGBO57k5eiPvN0sB_Go5OOjxPaQbzE3hGeeeng4dshQ0ThMtaNgq4eLEM7hKXAtkToq7e1CJtQCE_fzM4A4uDLhqXYk_SrA2GpozNkvLDD8i8V91ynfFj3Jp94w6YrIB2jZ9PWDIG2-rpdLB2_Q-GFYrK09Da_aCXe1TJ3lRULJmF44FqvJWekz6xLrhL6NKHEaT0wkAe4Z7H5va8pj_yHcJWHoyr7Lt2q5Ta7cCHmm_fKtg-IHqBHuaBhHODwebxMggCfIpwv1NkK82CiKELNO70xGmExRM3VDGVSNO9Pm-kC5UWvuEU8lm5reIe-dsETTiz8gVvfjI-cO2f7G0KpW0Jiae6AdcPOiSIQpGEiqC7Q49M5cphzHB3knvsysRXbfiSS5j5hueyYOHhkTk0GQpuhAyCQUNbsIF1ek_B8MZBsME2y446ZS37pzKcYnVOTFfan2xvu6zKl32yAg3h46jk86qgd3gcGQOABGL7wtsQKWk7dw2DChd-nfLSh75gXD1e1JT7U"
+                    }
+                }
+        headers: []
+        description: '200'
+    responseFields:
+      success:
+        name: success
+        description: 'The success of this API response is (`true` or `false`).'
+        type: boolean
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/auth/forget-password
+    metadata:
+      title: Forget-Password
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'required. Email for login'
+        required: false
+        example: mdrabiulhasan.me@gmail.com
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 200,
+                "message": "Password reset mail sent.",
+                "data": {
+                    "reset_token": "VuEQfdGr4uTDOFNWGUEb"
+                }
+            }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/auth/user-info
+    metadata:
+      title: 'User Information'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer token'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 200,
+                "message": "User Fetch successfully.",
+                "data": {
+                    "name": "Rabiul Hasan",
+                    "email": "rabiul.fci@gmail.com"
+                }
+            }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/auth/reset-password/{token}'
+    metadata:
+      title: Password-Reset
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      token:
+        name: token
+        description: 'The token for the password-reset.'
+        required: true
+        example: VuEQfdGr4uTDOFNWGUEb
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      password:
+        name: password
+        description: required.
+        required: false
+        example: '123456'
+        type: string
+        custom: []
+      confirm_password:
+        name: confirm_password
+        description: required.
+        required: false
+        example: '123456'
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 200,
+                "message": "User Password Reset successfully. Please login",
+                "data": {
+                    "name": "Rabiul Hasan",
+                    "token_type": "Bearer",
+                    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjY1NjU1NjFkZmY3ZWM4MzMyMWE5YTQzMjgyNDExMzYxMWMyYjRjZDk4YWExODMzMmQ5NDQ0MzliZWMzMGMzOGE2ODJhZjg1NjQ0Y2ZhOGEiLCJpYXQiOjE2NjM5OTc1MjkuMjk0NTQyLCJuYmYiOjE2NjM5OTc1MjkuMjk0NTQ3LCJleHAiOjE2OTU1MzM1MjkuMjU2NjIsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.E96NWszsK4GEVgUuDKM7hpNgr8Z6aY7mZur68PJuPPAh5qsFYBVoIx0RO0K-tcfs6fegm3cwTM9HZK9ezhHFbuexcdQt_OlMDDqtNVPYQERhuqzTsdUUUeQFnRdeLRo-0vw76LaJJT6JYdaZIJqEE0mXCmiwZyd3J3ocjm9yVAFAQHlvpljBWmdPr23ktNS3K_Srwpvhc9Cb158ZLZlMjoHO2ObAE3QBwOvG8Iybj_SZSFxuwcwtGQfJKSmwsBzWmgAYcK3IwBBGJ_lOuDsl-nZnha7oQyyKRVGAqJ7RfSalKfdE8P64Q7-Z8QVLxBOhBGpWjj-48Qx7bLkdmuZUqRW5H2w6sUs4Lj2A_Md3iJqh3Q3F7RpNEH3DuCGK9cBlopovr8Mwq-FDohR9ehEKTORz9ImssJvCe1J4SgEetE11LXloi3_x1sy_BwfLQsJLw7_ofV0eSCPt0oEfe-ORNrqs_aoKY_TfinkcEKTG5IDg6eHvWkeigZvFlv-ex_pAmn0UbG2INuwA-0ZCLSlIydosOu6AkUlqSgUnt0kgN9wNY8pWOGbLchvPBUMVREFYb_BGtPTkmk7y8cnFGEnt45kMFP3EjMEk2j0CrqVZj9xqnaJO401UEHN2cjVQVrZEIB2iBWt-DKAoonl4qFsC-2vs0Nc173bpH9TPxOAA_Fc"
+                }
+            }
+        headers: []
+        description: '200'
+    responseFields: []

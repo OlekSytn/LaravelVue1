@@ -1,0 +1,99 @@
+name: Guest
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/guest/products
+    metadata:
+      title: 'Product List'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                 "success": true,
+                 "status_code": 200,
+                 "message": "Product fetch successfully.",
+                 "data": [
+                     {
+                        "id": 16,
+                        "name": "Nokia 1200",
+                        "details": "Old Iphone",
+                        "price": "34.00",
+                        "image": "http://localhost/Learning/appnap-assignment/backend/public/storage/product-images/JDZ3ICe9dVBoYVtItuXa4xkLHnMRGb3MrBs1QAj8.png",
+                        "category": "Nokia",
+                        "category_id": 3,
+                        "user": "Rabiul Hasan",
+                        "created_at": "23rd September, 2022"
+                    }
+                ]
+            }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/guest/products/{product_id}/details'
+    metadata:
+      title: 'Product Details'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product_id:
+        name: product_id
+        description: 'The ID of the product.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      id:
+        name: id
+        description: 'This id require for fetching product details.'
+        required: true
+        example: '1'
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 201,
+                "message": "Product fetch successfully.",
+                "data": {
+                    "id": 16,
+                    "name": "Nokia 1200",
+                    "details": "Old Iphone",
+                    "price": "34.00",
+                    "image": "http://localhost/Learning/appnap-assignment/backend/public/storage/product-images/JDZ3ICe9dVBoYVtItuXa4xkLHnMRGb3MrBs1QAj8.png",
+                    "category": "Nokia",
+                    "category_id": 3,
+                    "user": "Rabiul Hasan",
+                    "created_at": "23rd September, 2022"
+                }
+            }
+        headers: []
+        description: '200'
+    responseFields:
+      success:
+        name: success
+        description: 'The success of this API response is (`true` or `false`).'
+        type: boolean

@@ -1,0 +1,274 @@
+name: Product
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/products
+    metadata:
+      title: 'Product List'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer token'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                 "success": true,
+                 "status_code": 200,
+                 "message": "Product fetch successfully.",
+                 "data": [
+                     {
+                        "id": 16,
+                        "name": "Nokia 1200",
+                        "details": "Old Iphone",
+                        "price": "34.00",
+                        "image": "http://localhost/Learning/appnap-assignment/backend/public/storage/product-images/JDZ3ICe9dVBoYVtItuXa4xkLHnMRGb3MrBs1QAj8.png",
+                        "category": "Nokia",
+                        "category_id": 3,
+                        "user": "Rabiul Hasan",
+                        "created_at": "23rd September, 2022"
+                    }
+                ]
+            }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/products
+    metadata:
+      title: 'Add Product'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+      Authorization: 'Bearer token'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: required.
+        required: false
+        example: Iphone-13
+        type: string
+        custom: []
+      details:
+        name: details
+        description: required.
+        required: false
+        example: old-iphone
+        type: text
+        custom: []
+      price:
+        name: price
+        description: required.
+        required: false
+        example: 999.0
+        type: number
+        custom: []
+      category_id:
+        name: category_id
+        description: required.
+        required: false
+        example: 1
+        type: integer
+        custom: []
+      image:
+        name: image
+        description: ''
+        required: true
+        example: null
+        type: file
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 201,
+                "message": "Product created successfully."
+            }
+        headers: []
+        description: '200'
+    responseFields:
+      success:
+        name: success
+        description: 'The success of this API response is (`true` or `false`).'
+        type: boolean
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/products/{id}'
+    metadata:
+      title: 'Show Single Product'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer token'
+    urlParameters:
+      id:
+        name: id
+        description: 'This id require for fetching product details.'
+        required: true
+        example: '1'
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 201,
+                "message": "Product fetch successfully.",
+                "data": {
+                    "id": 16,
+                    "name": "Nokia 1200",
+                    "details": "Old Iphone",
+                    "price": "34.00",
+                    "image": "http://localhost/Learning/appnap-assignment/backend/public/storage/product-images/JDZ3ICe9dVBoYVtItuXa4xkLHnMRGb3MrBs1QAj8.png",
+                    "category": "Nokia",
+                    "category_id": 3,
+                    "user": "Rabiul Hasan",
+                    "created_at": "23rd September, 2022"
+                }
+            }
+        headers: []
+        description: '200'
+    responseFields:
+      success:
+        name: success
+        description: 'The success of this API response is (`true` or `false`).'
+        type: boolean
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/products/{id}'
+    metadata:
+      title: 'Delete Product'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer token'
+    urlParameters:
+      id:
+        name: id
+        description: 'This id require for delete product details.'
+        required: true
+        example: '1'
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 200,
+                "message": "Product deleted successfully."
+            }
+        headers: []
+        description: '200'
+    responseFields:
+      success:
+        name: success
+        description: 'The success of this API response is (`true` or `false`).'
+        type: boolean
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/products/update/{id}'
+    metadata:
+      title: 'Update Product'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+      Authorization: 'Bearer token'
+    urlParameters:
+      id:
+        name: id
+        description: 'This id require for updating product details.'
+        required: true
+        example: '1'
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: required.
+        required: false
+        example: Iphone-13
+        type: string
+        custom: []
+      details:
+        name: details
+        description: required.
+        required: false
+        example: old-iphone
+        type: text
+        custom: []
+      price:
+        name: price
+        description: required.
+        required: false
+        example: 999.0
+        type: number
+        custom: []
+      category_id:
+        name: category_id
+        description: required.
+        required: false
+        example: 1
+        type: integer
+        custom: []
+      image:
+        name: image
+        description: ''
+        required: false
+        example: null
+        type: file
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "success": true,
+                "status_code": 201,
+                "message": "Category updated successfully."
+            }
+        headers: []
+        description: '200'
+    responseFields:
+      success:
+        name: success
+        description: 'The success of this API response is (`true` or `false`).'
+        type: boolean

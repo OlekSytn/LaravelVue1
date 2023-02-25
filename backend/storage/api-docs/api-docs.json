@@ -1,0 +1,301 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Appnap Assignment",
+        "description": "Full Stack Developer Appnap Assignment",
+        "contact": {
+            "name": "API Support",
+            "url": "https://www.rhasan.xyz",
+            "email": "mdrabiuilhasan.me@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/Learning/appnap-assignment/backend/api/v1",
+            "description": "Local Server"
+        }
+    ],
+    "paths": {
+        "/auth/forget-password": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Reset token send email",
+                "description": "Forget Password",
+                "operationId": "bd51cd24323a4f46e3c3cbe1427831f2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "email": "arif@gmail.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password reset mail sent.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": [
+                                    {
+                                        "success": true,
+                                        "status_code": 200,
+                                        "message": "Password reset mail sent.",
+                                        "data": {
+                                            "reset_token": "XamaAWLSwKyInDl8gANe"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login with your cridentail",
+                "description": "Login",
+                "operationId": "f9edc6438cd1527e569950208a38a3d5",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "email": "arif@gmail.com",
+                                    "password": "123123"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User login successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": [
+                                    {
+                                        "success": true,
+                                        "status_code": 200,
+                                        "message": "User login successfully.",
+                                        "data": {
+                                            "name": "Rabiul Hasan",
+                                            "token": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZWQ2NjdiOGNjNDgyOWQ5NjY0MmU2MDI3ZmZlNDU2Zjg0M2JjY2VkY2JmNjZlYzY5NDVlMTlmYjQxZjY2ZjI0YmRmMjZiMzE1NDU0ZjMxNTAiLCJpYXQiOjE2NjM5MDgxNjguMjUzNDMyLCJuYmYiOjE2NjM5MDgxNjguMjUzNDQxLCJleHAiOjE2OTU0NDQxNjguMTI2NjcyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SPDaF-nFeT3KNOojx8mfttafvGwOJJrBfWnikfr4RENaRSQo6EWUnIFqjbnwbTMEa9yRs-1Mkem2Fdji1_M3OtkjFM-YQNaMU-rqybJqwDyuc79Rt9aDlRp0Aw3nKHnKAgxuS_9BADC9P73RLaef9dsS0G9KBUODUdvvU4TkBqC-nAbINM850fTmk_xMPhmZ1N0fBmEKqc2B4HaLXHMQswFicOeuHOiOdRjjrZM6h8v6T5IJjGozP1ECQM6MhRlcqBBSl2G6fSZjUKEjQR1jqo3wr_rmcyt8v-wlEM44U9_nWT86RrCL-ySP-zMBYKN2J0aAc_zEg0JEc5AoyPKNDTcN2n1AbwvHjU28DN5yc_GOOp5miRbdhRZSktJ-LipOpUZt5CZZoXH8K5KQjmxF3FB4cDb6eHXsQZnSp1dUUfdWMueQyIuKyeAFeSqunPMtMZJc7DmAwI1ODOSl2SgBTBk8nGMARJa-CMaBItSybHlC_AtWJnNXdIyq4IKd0q6eiK9sDFP7xuCTkSRdOYescT7_BX3Q44uJWGk0gFmJp5Rcy_aHcn5AO4vCjsPAY3S1UVakVEqQ2FaO4I4YnKLNKFLl1B1TnOfmVhMVwj8UDNhJkXv1JyuNQnawNbvCW7pt3vBvbasYqBh_-VRTvMAczyuajny2oQmgg8Ymlq1Kkr4"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/reset-password/{token}": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login with your cridentail",
+                "description": "Password Reset",
+                "operationId": "646465319979d65e8a02f9a0153ae027",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "password": "112233",
+                                    "confirm_password": "112233"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User Password Reset successfully. Please login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": [
+                                    {
+                                        "success": true,
+                                        "status_code": 200,
+                                        "message": "User Password Reset successfully. Please login",
+                                        "data": {
+                                            "name": "Rabiul Hasan",
+                                            "token": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMmUwODdlNWRiOGE5ZjgyZWMyOTY3YTI4YTNlY2U3Y2I4M2MxMDFlZGIxZTZiNzQzMTdjNGRlZGRjNmVmMmQ1ZDM1YjMzNjY1OGE4N2M1ZTciLCJpYXQiOjE2NjM5MDg3NzMuNTMxMDAzLCJuYmYiOjE2NjM5MDg3NzMuNTMxMDEyLCJleHAiOjE2OTU0NDQ3NzMuNDE4MjQxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.wHnLAII73ytZ4C_8BzJp6GQlHWr83gKFboRFD-Bwukw233d9lorrmOrj3gG9UbKatvoYuznln4TwYzNZVCcP_QNXcjiu7UvPYHEJ9V-rRz2v6uh4gFhArutbHlQfcgQT9ONK8z_YbS29ghmgEdNSRaJjdVUqRlkI_SiYuDPiF5DH0QnNcAvWSx-YFIE7yhWyxdvjvfYonPnp3k6dYb1C8lm-m0ioHdUMloVpYxIByOX_cqfeOOlu8tEbdDUV_UfmNbkmCHPbLea9MlNup0ekZK6ch5lED-u7M-0c5h-KkBxaIXcrI0LxeyfIBUMMTP-2SZdotSEaotVgtDwSezBdXNewmAz219l6pOKM5uSkd4xrKae9QdFgNneqL-fd_D3gLnAavJemarzBnH7Oezg9aeGqVSn7m_P-nurkfUvnq7Q4eW-Fy223VLuMs2W9A79_k5tvJKQ9Lq9xo0DROAJDBPDtm83Le_b7U5uD9FebfW8n_BYScQfBcwqohrlSbE2xKj1KBfE59tnHJaaQK9qUCNleWYr6_7angI2L2q64yDoR6wlbeIpPI-6uChatinrypc7Yugh9sE3B-1qigUqIMxib3C2RGOZ6J9-5IEuITnFXJcYi6sY6M6kh29GhH_9pcxB-6sSeAukLq5UY8Q26OJwlNq3GPePxkvpL3bBI-Ac"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/registration": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Registration with your information",
+                "description": "Registration",
+                "operationId": "21c3fb4a2e08cf9ec0af87f3e78a74bb",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "example": {
+                                    "name": "Ariful Islam",
+                                    "email": "arif@gmail.com",
+                                    "password": "123123",
+                                    "confirm_password": "123123"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User register successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": [
+                                    {
+                                        "success": true,
+                                        "status_code": 200,
+                                        "message": "User register successfully.",
+                                        "data": {
+                                            "name": "Ariful Islam",
+                                            "token": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZDIyYWUwYWE3ZTZhZjQwYmViMzZhM2RiYzAzNTcyNDEzYmI4MmFiYTAwMTk2YTgzZWU0ZjQyZDg4ZTcwZjk3YzcyMmRlZDE1NTliOTg2ZTciLCJpYXQiOjE2NjM5MDczNzguMDMwOTM5LCJuYmYiOjE2NjM5MDczNzguMDMwOTQ4LCJleHAiOjE2OTU0NDMzNzcuODExODYxLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.g6EYLaFnKf_8lnlrxSNj6zsb-WcbLZ7KOS5qjEkv1jPu2jrmbsvluzDgXk8NyupH6mkYQS0wHdqMFlvFJBolxfsmwNNgBV0OfqlydKiBpL4rD_bsYKB8FxyiX7QxM6IOWFkGMJsq7v2jRGGOkKIvklMEhpJcSwdo-iDNae1HuOedYpSyRs2H07yXsunQ2zyFovEPGgttQH4we6OfoWA1x4L6NE6v_9jFmE9PUdyTf9qn8398EeZqu_S6UCNUcMQ_5MYTE2fx3DMNNgPCHmL4bUoj9mdszeaMm3lH5Qq72xKsc5ft_GrX11rk8FmRaS4mB8AJLhefH9afu8hpIbrZw-sBVfF71aZFfrrDrK7dp0hnEdoO385cHkE5mgyMwfl_0mT65Y-yPMsx2xBQUHWX0Y_gwk2QFGSjib6YNeENInujn_rC__kdeyCsIDTYumHVsGRk4DCEkpGja_YllCUPf4TNW_asQyUo3MHoYWTWuSxR0NPBbl8Ji_BQlO8j45YPduzUT-Ek3G7EcAjj28zyX9KqSF20wNt6BnDLzbZA5wdusm2yq6IekjOQlkM6xaoIQ0dRs8bohF0hqRPPnd5sRbLBRqfQxn0MQvw4zGP3qbdtfyQPVowO8N2W8jfqqPXLqcSiq5_sjSQW6YtKnjgGfurkdSeLCDp5kd374E9aJA4"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/user-info": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Authenticated User Profile",
+                "description": "This api fetch authentication user profile",
+                "operationId": "978ba09aa886de52ed58e83afe23084c",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": {
+                                    "success": true,
+                                    "status_code": 200,
+                                    "message": "User Fetch successfully.",
+                                    "data": {
+                                        "name": "Rabiul Hasan",
+                                        "email": "rabiul.fci@gmail.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ]
+            }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Category List",
+                "description": "Show all category list",
+                "operationId": "11dc7bee7f8ad5b8d0a6a33493c5ea92",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "example": [
+                                    {
+                                        "success": true,
+                                        "status_code": 200,
+                                        "message": "User login successfully.",
+                                        "data": {
+                                            "name": "Rabiul Hasan",
+                                            "token": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZWQ2NjdiOGNjNDgyOWQ5NjY0MmU2MDI3ZmZlNDU2Zjg0M2JjY2VkY2JmNjZlYzY5NDVlMTlmYjQxZjY2ZjI0YmRmMjZiMzE1NDU0ZjMxNTAiLCJpYXQiOjE2NjM5MDgxNjguMjUzNDMyLCJuYmYiOjE2NjM5MDgxNjguMjUzNDQxLCJleHAiOjE2OTU0NDQxNjguMTI2NjcyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SPDaF-nFeT3KNOojx8mfttafvGwOJJrBfWnikfr4RENaRSQo6EWUnIFqjbnwbTMEa9yRs-1Mkem2Fdji1_M3OtkjFM-YQNaMU-rqybJqwDyuc79Rt9aDlRp0Aw3nKHnKAgxuS_9BADC9P73RLaef9dsS0G9KBUODUdvvU4TkBqC-nAbINM850fTmk_xMPhmZ1N0fBmEKqc2B4HaLXHMQswFicOeuHOiOdRjjrZM6h8v6T5IJjGozP1ECQM6MhRlcqBBSl2G6fSZjUKEjQR1jqo3wr_rmcyt8v-wlEM44U9_nWT86RrCL-ySP-zMBYKN2J0aAc_zEg0JEc5AoyPKNDTcN2n1AbwvHjU28DN5yc_GOOp5miRbdhRZSktJ-LipOpUZt5CZZoXH8K5KQjmxF3FB4cDb6eHXsQZnSp1dUUfdWMueQyIuKyeAFeSqunPMtMZJc7DmAwI1ODOSl2SgBTBk8nGMARJa-CMaBItSybHlC_AtWJnNXdIyq4IKd0q6eiK9sDFP7xuCTkSRdOYescT7_BX3Q44uJWGk0gFmJp5Rcy_aHcn5AO4vCjsPAY3S1UVakVEqQ2FaO4I4YnKLNKFLl1B1TnOfmVhMVwj8UDNhJkXv1JyuNQnawNbvCW7pt3vBvbasYqBh_-VRTvMAczyuajny2oQmgg8Ymlq1Kkr4"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authentication",
+            "description": "Login/Registration/Forget-Password/Password-Reset Route Here"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "jwt_token": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
